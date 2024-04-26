@@ -1,0 +1,11 @@
+Array number: 1
+
+the sum of even numbers is: 1
+the sum of odd numbers is: 1
+
+Array number: 2
+
+the sum of even numbers is: 1
+the sum of odd numbers is: 1
+
+The result of comparing the first and second elements: false

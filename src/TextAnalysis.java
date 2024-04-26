@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TextAnalysis {
+public class TextAnalysis extends Menu {
     String objectText;
     String objectText2;
 
@@ -31,7 +31,7 @@ public class TextAnalysis {
         return (int) (numberOfKilometers * 1.852);
     }
 
-    public void switcher() {
+    public void printMenu() {
         int option;
         Scanner scanner = new Scanner(System.in);
 
@@ -79,7 +79,7 @@ public class TextAnalysis {
                             System.out.println("Mistake. Give a number, not words. Try again.");
                             scanner.next();
                         } catch (NegativeNumberException e) {
-                            System.out.println( e.getMessage());
+                            System.out.println(e.getMessage());
                         }
                     } while (!correctData);
                     break;
@@ -94,5 +94,10 @@ public class TextAnalysis {
         } while (option != 0);
 
 
+    }
+
+    @Override
+    public void description() {
+        System.out.println("2. Text Analyzator");
     }
 }

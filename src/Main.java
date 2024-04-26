@@ -1,38 +1,53 @@
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
 
-        TextAnalysis tekst = new TextAnalysis();
+        System.out.println("__--Albert Mossakowski--__");
+        AnalyzatorOfManyCollectionsOfNumbers analyzatorOfManyCollectionsOfNumbers = new AnalyzatorOfManyCollectionsOfNumbers();
+        TextAnalysis textAnalysis = new TextAnalysis();
+        List<Menu> menu = new ArrayList<>();
+        menu.add(analyzatorOfManyCollectionsOfNumbers); //przyklad wirtualnosci, abstrakcji
+        menu.add(textAnalysis);
 
-        tekst.switcher();
 
-
-
-
-        System.out.println("Enter first array size");
+        int option = 0;
         Scanner scanner = new Scanner(System.in);
-        int size = scanner.nextInt();
-        NumbersAnalysis numbersAnalysis = new NumbersAnalysis(size);
-        NumbersAnalysis numbersAnalysis2 = new NumbersAnalysis(size);
+        do {
+            System.out.println("\nChoose functionality");
+            for (Menu element : menu) {
+                element.description();
+            }
 
-        numbersAnalysis.inputtingToTheBoard();
-        System.out.println("Enter second array size");
-        numbersAnalysis2.inputtingToTheBoard();
+            try {
+                option = scanner.nextInt();
+                if (option < 0) {
+                    throw new NegativeNumberException();
+                }
+            } catch (NegativeNumberException e) {
+                System.out.println(e.getMessage());
+            } catch (InputMismatchException e) {
 
-        AnalyzatorOfManyCollectionsOfNumbers analyzatorOfManyCollectionsOfNumbers=new AnalyzatorOfManyCollectionsOfNumbers();
+                System.out.println("Error. Dont put letters");
+                scanner.next();
+            }
 
 
-        analyzatorOfManyCollectionsOfNumbers.getNumberAnalysisList().add(numbersAnalysis);
-        analyzatorOfManyCollectionsOfNumbers.getNumberAnalysisList().add(numbersAnalysis2); // dodawanie do listy
-        System.out.println(analyzatorOfManyCollectionsOfNumbers.getNumberAnalysisList().size()); // wyswietlanie rozmiaru listy
-        analyzatorOfManyCollectionsOfNumbers.printListofObjects(); //wyswietlanie wszystkich elementow
-        //analizatorWieluKolekcjiLiczb.getListaAnalizLiczb().remove(1); //usuwanie elementu
+        } while (option != 1 && option != 2);
 
+        switch (option) {
+            case 1:
+                analyzatorOfManyCollectionsOfNumbers.printMenu();
+                break;
+            case 2:
+                textAnalysis.printMenu();
+                break;
+        }
 
-        //porownywanie tablic
-        System.out.println(analyzatorOfManyCollectionsOfNumbers.getNumberAnalysisList().get(0).equals(analyzatorOfManyCollectionsOfNumbers.getNumberAnalysisList().get(1)));
 
     }
 
